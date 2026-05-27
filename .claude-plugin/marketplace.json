@@ -1,5 +1,6 @@
 {
   "name": "farmhut-skills",
+  "description": "Personal Claude Code skills + plugins by Munyaradzi Makosa. Engineering-leadership and product-development tooling.",
   "owner": {
     "name": "Munyaradzi Makosa",
     "email": "munya@munyamakosa.com"
@@ -7,12 +8,21 @@
   "plugins": [
     {
       "name": "lead-eng",
-      "source": ".",
+      "source": {
+        "source": "github",
+        "repo": "farmhutsoftwareteam/lead-eng"
+      },
       "description": "Scope a product ask into one parent epic + 3-12 agent-ready GitHub issues with real file paths and a concrete persona.",
       "version": "1.0.0",
       "author": {
         "name": "Munyaradzi Makosa"
-      }
+      },
+      "homepage": "https://github.com/farmhutsoftwareteam/lead-eng",
+      "repository": "https://github.com/farmhutsoftwareteam/lead-eng",
+      "license": "MIT",
+      "keywords": ["github-issues", "epic", "scoping", "product-engineering", "agent-ready"],
+      "category": "engineering",
+      "tags": ["github", "issues", "scoping", "epic"]
     }
   ]
 }

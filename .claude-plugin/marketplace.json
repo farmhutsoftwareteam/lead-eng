@@ -9,8 +9,8 @@
     {
       "name": "lead-eng",
       "source": {
-        "source": "github",
-        "repo": "farmhutsoftwareteam/lead-eng"
+        "source": "url",
+        "url": "https://github.com/farmhutsoftwareteam/lead-eng.git"
       },
       "description": "Scope a product ask into one parent epic + 3-12 agent-ready GitHub issues with real file paths and a concrete persona.",
       "version": "1.0.0",

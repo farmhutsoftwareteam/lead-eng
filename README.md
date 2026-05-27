@@ -2,8 +2,6 @@
 
 A Claude Code skill that translates product intuition into engineer-ready GitHub issues via the `gh` CLI. Produces one parent epic + 3–12 child issues, each grounded in real file paths and line numbers, with explicit out-of-scope guardrails so agents picking up the work don't scope-creep.
 
-Built to be invoked as `/lead-eng` inside Claude Code (or matched on phrases like "scope this", "break this down for an agent", "write this up as issues").
-
 ## What it does
 
 Given a concrete trigger (a file, a feature spec, a bug list, an audit report) and a real user persona, `lead-eng`:
@@ -14,7 +12,7 @@ Given a concrete trigger (a file, a feature spec, a bug list, an audit report) a
 4. Verifies every created issue title matches its body before moving on.
 5. Refreshes the epic body to link to the children.
 
-The full template + prior-art reference live in `references/`.
+The full template + prior-art reference live in `skills/lead-eng/references/`.
 
 ## Refuses to draft without
 
@@ -26,26 +24,47 @@ If any are missing, the next thing it says is a clarification question — not a
 
 ## Install
 
-Clone into your personal Claude skills directory:
+### Option A — Plugin marketplace (recommended)
 
-```bash
-git clone https://github.com/farmhutsoftwareteam/lead-eng ~/.claude/skills/lead-eng
+Inside Claude Code, run:
+
+```
+/plugin marketplace add farmhutsoftwareteam/lead-eng
+/plugin install lead-eng@farmhut-skills
 ```
 
-Verify Claude Code picks it up:
+Then invoke with `/lead-eng:lead-eng`.
+
+**Why this is the recommended path:** Claude Code tracks the version, you get update notifications when new releases ship, and you can uninstall cleanly with `/plugin uninstall lead-eng@farmhut-skills`.
+
+> Tip: to keep the shorter `/lead-eng` form, add a slash-command alias in your `~/.claude/settings.json`:
+> ```json
+> {
+>   "aliases": { "/lead-eng": "/lead-eng:lead-eng" }
+> }
+> ```
+
+### Option B — Direct git clone
+
+Skip the plugin layer and drop the skill straight into your personal skills directory:
 
 ```bash
-claude
-> /lead-eng
+git clone https://github.com/farmhutsoftwareteam/lead-eng /tmp/lead-eng \
+  && cp -R /tmp/lead-eng/skills/lead-eng ~/.claude/skills/lead-eng \
+  && rm -rf /tmp/lead-eng
 ```
 
-You should see the skill greet you and ask for the three required inputs (target, file paths + line numbers, persona) before doing anything.
+Invoke with `/lead-eng` (no namespacing). Update later with the same command — it overwrites cleanly. No version tracking or update notifications with this path.
 
-### Updating
+## Verify install
 
-```bash
-cd ~/.claude/skills/lead-eng && git pull
+Open Claude Code and run:
+
 ```
+/help
+```
+
+You should see `lead-eng` listed. Then run the skill — it will refuse to draft until you give it the three required inputs (target, file paths + line numbers, persona) before doing anything.
 
 ## Requirements
 
@@ -59,9 +78,15 @@ Most "scope this for me" prompts produce vague, untriaged issue lists that the n
 
 The output is opinionated and somewhat strict — that's the point. If you need a looser brainstorm-mode skill, this isn't it.
 
+## Updating
+
+**Plugin install:** `/plugin update lead-eng@farmhut-skills`
+
+**Direct clone install:** re-run the install snippet above.
+
 ## License
 
-MIT — fork it, modify it, share variants.
+MIT — fork it, modify it, ship variants.
 
 ## Author
 

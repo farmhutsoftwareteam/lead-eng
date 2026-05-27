@@ -1,0 +1,12 @@
+{
+  "name": "lead-eng",
+  "description": "Translate product intuition into engineer-ready GitHub issues. One parent epic + 3-12 child issues, each grounded in real file paths, line numbers, and a concrete user persona. Refuses to draft without all three.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Munyaradzi Makosa",
+    "email": "munya@munyamakosa.com"
+  },
+  "homepage": "https://github.com/farmhutsoftwareteam/lead-eng",
+  "repository": "https://github.com/farmhutsoftwareteam/lead-eng",
+  "license": "MIT"
+}
